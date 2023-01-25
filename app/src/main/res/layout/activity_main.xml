@@ -29,7 +29,7 @@
         <!--        CakeView is a custom SurfaceView that is defined in the app's source code -->
         <cs301.birthdaycake.CakeView
             android:id="@+id/cakeview"
-            android:layout_width="match_parent"
+            android:layout_width="336dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
     </LinearLayout>
@@ -44,6 +44,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="HOORAY!!" />
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="Switch" />
 
         <Button
             android:id="@+id/button2"
