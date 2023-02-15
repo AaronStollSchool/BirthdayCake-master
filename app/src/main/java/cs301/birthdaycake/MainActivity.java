@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         CakeController control = new CakeController(view);
 
-        View blowout = findViewById(R.id.blowout);
+        View blowout = findViewById(R.id.extinguish);
         blowout.setOnClickListener(control);
 
         CompoundButton candles = findViewById(R.id.candles);
