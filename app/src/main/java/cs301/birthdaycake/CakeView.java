@@ -21,6 +21,8 @@ public class CakeView extends SurfaceView {
     Paint Black = new Paint();
 
 
+    Paint coordinatePaint = new Paint();
+
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
         and adapting to different tablets' screen sizes and resolutions.  I've deliberately
@@ -38,8 +40,10 @@ public class CakeView extends SurfaceView {
     public static final float outerFlameRadius = 30.0f;
     public static final float innerFlameRadius = 15.0f;
 
+    public static final float textPosX = 1300.0f;
+    public static final float textPosY = 1100.0f;
 
-
+    public String coordinateTxt;
     private CakeModel cake;
 
     public boolean ifTouched = false;
@@ -72,6 +76,8 @@ public class CakeView extends SurfaceView {
         balloonPaint.setColor(Color.BLUE);
         balloonPaint.setStyle(Paint.Style.FILL);
         Black.setColor(Color.BLACK);
+        coordinatePaint.setColor(0xFFFF0000); //full red
+        coordinatePaint.setTextSize(100.0f);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -107,6 +113,12 @@ public class CakeView extends SurfaceView {
                 canvas.drawRect(wickLeft, wickTop, wickLeft + wickWidth, wickTop + wickHeight, wickPaint);
             }
         }
+    }
+
+    public void drawCoordinates(Canvas canvas){
+        // hardcode to 1300,1100
+        coordinateTxt = "x: " + Float.toString(cake.xTouch) + ", y: " + Float.toString(cake.yTouch);
+
     }
 
     /**
@@ -153,9 +165,10 @@ public class CakeView extends SurfaceView {
 
         }
 
+        drawCoordinates(canvas);
+        canvas.drawText(coordinateTxt, textPosX, textPosY, coordinatePaint);
+
     }//onDraw
-
-
 
 
     public CakeModel getModel(){

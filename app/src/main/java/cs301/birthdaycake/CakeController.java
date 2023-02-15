@@ -7,7 +7,7 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 
 public class CakeController implements View.OnClickListener, CompoundButton.OnCheckedChangeListener,
-        SeekBar.OnSeekBarChangeListener, View.OnTouchListener {
+        SeekBar.OnSeekBarChangeListener{
     private CakeView view;
     private CakeModel model;
 
@@ -33,19 +33,19 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
             model.candles = false;
         }
         view.invalidate();
-    }
+    } //OnCheckedChangeListener Method
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
         Log.d("bchange", "bar changed");
         model.numCandles = i;
         view.invalidate();
-    }
+    } //SeekBarListener Method
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
 
-    }
+    } //SeekBarListener Method
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
