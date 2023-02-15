@@ -17,6 +17,8 @@ public class CakeView extends SurfaceView {
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
 
+    Paint coordinatePaint = new Paint();
+
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
         and adapting to different tablets' screen sizes and resolutions.  I've deliberately
@@ -34,6 +36,10 @@ public class CakeView extends SurfaceView {
     public static final float outerFlameRadius = 30.0f;
     public static final float innerFlameRadius = 15.0f;
 
+    public static final float textPosX = 1300.0f;
+    public static final float textPosY = 1100.0f;
+
+    public String coordinateTxt;
     private CakeModel cake;
 
 
@@ -61,6 +67,8 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        coordinatePaint.setColor(0xFFFF0000); //full red
+        coordinatePaint.setTextSize(100.0f);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -98,6 +106,12 @@ public class CakeView extends SurfaceView {
         }
     }
 
+    public void drawCoordinates(Canvas canvas){
+        // hardcode to 1300,1100
+        coordinateTxt = "x: " + Float.toString(cake.xTouch) + ", y: " + Float.toString(cake.yTouch);
+
+    }
+
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
      * conceptually similar to a Graphics in javax.swing, the implementation has
@@ -132,6 +146,9 @@ public class CakeView extends SurfaceView {
 
         //Now a candle in the center
         drawCandle(canvas, cakeLeft + cakeWidth/2 - candleWidth/2, cakeTop);
+
+        drawCoordinates(canvas);
+        canvas.drawText(coordinateTxt, textPosX, textPosY, coordinatePaint);
 
     }//onDraw
 
