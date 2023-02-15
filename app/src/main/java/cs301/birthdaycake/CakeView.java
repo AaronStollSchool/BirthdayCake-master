@@ -117,7 +117,7 @@ public class CakeView extends SurfaceView {
 
     public void drawCoordinates(Canvas canvas){
         // hardcode to 1300,1100
-        coordinateTxt = "x: " + Float.toString(cake.xTouch) + ", y: " + Float.toString(cake.yTouch);
+        coordinateTxt = "x: " + Float.toString(cake.touchX) + ", y: " + Float.toString(cake.touchY);
 
     }
 
