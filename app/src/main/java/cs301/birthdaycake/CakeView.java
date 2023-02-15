@@ -19,6 +19,12 @@ public class CakeView extends SurfaceView {
 
     Paint Orange = new Paint();
 
+    Paint balloonPaint = new Paint();
+    Paint Black = new Paint();
+
+
+    Paint coordinatePaint = new Paint();
+
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
         and adapting to different tablets' screen sizes and resolutions.  I've deliberately
@@ -36,7 +42,13 @@ public class CakeView extends SurfaceView {
     public static final float outerFlameRadius = 30.0f;
     public static final float innerFlameRadius = 15.0f;
 
+    public static final float textPosX = 1300.0f;
+    public static final float textPosY = 1100.0f;
+
+    public String coordinateTxt;
     private CakeModel cake;
+
+    public boolean ifTouched = false;
 
 
 
@@ -64,6 +76,11 @@ public class CakeView extends SurfaceView {
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
         Orange.setColor(Color.rgb(255, 165, 0));
+        balloonPaint.setColor(Color.BLUE);
+        balloonPaint.setStyle(Paint.Style.FILL);
+        Black.setColor(Color.BLACK);
+        coordinatePaint.setColor(0xFFFF0000); //full red
+        coordinatePaint.setTextSize(100.0f);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -109,6 +126,12 @@ public class CakeView extends SurfaceView {
         }
     }
 
+    public void drawCoordinates(Canvas canvas){
+        // hardcode to 1300,1100
+        coordinateTxt = "x: " + Float.toString(cake.touchX) + ", y: " + Float.toString(cake.touchY);
+
+    }
+
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
      * conceptually similar to a Graphics in javax.swing, the implementation has
@@ -143,6 +166,18 @@ public class CakeView extends SurfaceView {
 
         //Now a candle in the center
         drawCandle(canvas, cakeLeft + cakeWidth/2 - candleWidth/2, cakeTop);
+
+
+        if (cake.hasTouched) {
+            float balloonHeight = 200.0f;
+            float balloonWidth = 130.0f;
+            canvas.drawOval(cake.touchX - balloonWidth / 2, cake.touchY - balloonHeight /2 , cake.touchX + balloonWidth, cake.touchY + balloonHeight, balloonPaint);
+            canvas.drawRect(cake.touchX + balloonWidth / 2 - 50, cake.touchY + balloonHeight - 5, cake.touchX + balloonWidth / 2 - 15, cake.touchY + balloonHeight+ 200, Black);
+
+        }
+
+        drawCoordinates(canvas);
+        canvas.drawText(coordinateTxt, textPosX, textPosY, coordinatePaint);
 
     }//onDraw
 

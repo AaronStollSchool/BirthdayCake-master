@@ -52,15 +52,25 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
 
     }
 
+
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        Log.d("touched test", "x: " + motionEvent.getX());
-        Log.d("touched test", "y: " + motionEvent.getY());
+        Log.d("cc", "cake clicked");
+        model.touchX = motionEvent.getX();
+        model.touchY = motionEvent.getY();
+        addBalloon(model.touchX,model.touchY);
         addRect(motionEvent.getX(), motionEvent.getY());
         return false;
     }
 
-//    add rectangle at a given coordinate
+    public void addBalloon(float x, float y){
+        model.touchX = x;
+        model.touchY = y;
+        model.hasTouched = true;
+        view.invalidate();
+    }
+
+    //    add rectangle at a given coordinate
     public void addRect(float x, float y){
         model.x = x;
         model.y = y;
