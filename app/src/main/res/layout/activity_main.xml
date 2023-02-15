@@ -95,10 +95,10 @@
             android:paddingRight="5dp">
 
             <Button
-                android:id="@+id/blowout"
+                android:id="@+id/extinguish"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Blow Out" />
+                android:text="Extinguish" />
 
             <Button
                 android:id="@+id/goodbye"
