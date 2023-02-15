@@ -171,8 +171,8 @@ public class CakeView extends SurfaceView {
         if (cake.hasTouched) {
             float balloonHeight = 200.0f;
             float balloonWidth = 130.0f;
-            canvas.drawOval(cake.touchX - balloonWidth / 2, cake.touchY - balloonHeight /2 , cake.touchX + balloonWidth, cake.touchY + balloonHeight, balloonPaint);
             canvas.drawRect(cake.touchX + balloonWidth / 2 - 50, cake.touchY + balloonHeight - 5, cake.touchX + balloonWidth / 2 - 15, cake.touchY + balloonHeight+ 200, Black);
+            canvas.drawOval(cake.touchX - balloonWidth / 2, cake.touchY - balloonHeight /2 , cake.touchX + balloonWidth, cake.touchY + balloonHeight, balloonPaint);
 
         }
 

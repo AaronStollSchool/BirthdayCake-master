@@ -10,5 +10,4 @@ public class CakeModel {
     public boolean hasTouched = false;
     public float touchX;
     public float touchY;
-    public boolean hasTouched;
 }
