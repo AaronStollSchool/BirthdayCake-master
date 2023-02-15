@@ -32,7 +32,8 @@
             android:id="@+id/cakeview"
             android:layout_width="336dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            />
     </LinearLayout>
 
     <LinearLayout
