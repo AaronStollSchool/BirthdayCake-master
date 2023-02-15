@@ -17,6 +17,10 @@ public class CakeView extends SurfaceView {
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
 
+    Paint balloonPaint = new Paint();
+    Paint Black = new Paint();
+
+
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
         and adapting to different tablets' screen sizes and resolutions.  I've deliberately
@@ -34,7 +38,11 @@ public class CakeView extends SurfaceView {
     public static final float outerFlameRadius = 30.0f;
     public static final float innerFlameRadius = 15.0f;
 
+
+
     private CakeModel cake;
+
+    public boolean ifTouched = false;
 
 
 
@@ -61,6 +69,9 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        balloonPaint.setColor(Color.BLUE);
+        balloonPaint.setStyle(Paint.Style.FILL);
+        Black.setColor(Color.BLACK);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -133,7 +144,18 @@ public class CakeView extends SurfaceView {
         //Now a candle in the center
         drawCandle(canvas, cakeLeft + cakeWidth/2 - candleWidth/2, cakeTop);
 
+
+        if (cake.hasTouched) {
+            float balloonHeight = 200.0f;
+            float balloonWidth = 130.0f;
+            canvas.drawOval(cake.touchX - balloonWidth / 2, cake.touchY - balloonHeight /2 , cake.touchX + balloonWidth, cake.touchY + balloonHeight, balloonPaint);
+            canvas.drawRect(cake.touchX + balloonWidth / 2 - 50, cake.touchY + balloonHeight - 5, cake.touchX + balloonWidth / 2 - 15, cake.touchY + balloonHeight+ 200, Black);
+
+        }
+
     }//onDraw
+
+
 
 
     public CakeModel getModel(){
